@@ -1,0 +1,42 @@
+<div class="parent-box">
+    <div class="container child-box">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 col-sm-6 offset-3">
+                <div>
+                    <div class="text-center title fs-lg text-bold text-upper">
+                        Login to Planify
+                    </div>
+                </div>
+                <hr>
+                <div *ngIf="error.show == true" class="alert alert-danger">
+                    {{ error.message }}
+                </div>
+                <form (ngSubmit)="submit()" [formGroup]="form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input 
+                            id = email
+                            formControlName="email"
+                            type="email" 
+                            class="form-control" 
+                            placeholder="you@planify.com" 
+                            required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" formControlName="password" type="password" class="form-control" placeholder="**********" required/>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-primary btn-block" disabled *ngIf="isLoading;else noLoading"> <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i> Submitting ...</button>
+                        <ng-template #noLoading>
+                            <button type="submit" class="btn btn-primary btn-block">Sign in to your Account</button>
+                        </ng-template>
+                    </div>
+                </form>
+                <div class="text-center">
+                    <a href="/register">Create Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,134 @@
+<app-loader *ngIf="isLoading;else content"></app-loader>
+<ng-template #content>
+
+    <div id="edit-project" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><i class="icon ion-md-close"></i></span>
+                </button>
+            </div>
+            <form [formGroup]="createForm" (ngSubmit)="submitEditForm()">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" formControlName="name" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Closed ? : </label>
+                        <br>
+                        <ui-switch color="#007bff" formControlName="is_closed" size="small"></ui-switch>
+                    </div>
+                    <div class="form-group">
+                        <label for="managed_by">In charge</label>
+                        <select formControlName="managed_by" id="managed_by" class="form-control">
+                            <option *ngFor="let e of users" value="{{ e.id }}">{{ e.name() }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="descrip">Description</label>
+                        <textarea class="form-control" formControlName="descrip" id="descrip" cols="30" rows="10"></textarea>
+                    </div>
+                    <input type="hidden" formControlName="id"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete-project" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="icon ion-md-close"></i>
+                    </span>
+                </button>
+            </div>
+            <form [formGroup]="deleteForm" (ngSubmit)="submitDeleteForm()">
+                <div class="modal-body">
+                    <p>
+                        Do you really want to delete this item ?
+                    </p>
+                    <input type="hidden" formControlName="id"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="title">Projects</div>
+                </div>
+                <div class="col-md-4">
+                    <input type="search" (change)="search($event)" class="form-control"/>
+                </div>
+                <div class="col-md-4 text-right">
+                    <button class="btn btn-primary" type="submit" (click)="showEditForm(null)">Add New</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-sm mt-2" *ngIf="items.length > 0;else empty">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let e of items">
+                                <td>
+                                    <a [routerLink]="['/project/' + e.id]">{{ e.name }}</a>
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger" *ngIf="e.is_closed == false;else closed">Running</span>
+                                    <ng-template #closed>
+                                        <span class="badge badge-primary">Closed</span>
+                                    </ng-template>
+                                </td>
+                                <td class="text-right text-gray actions">
+                                    <a style="cursor: pointer" (click)="showEditForm(e)">
+                                        <i class="icon ion-md-create"></i>
+                                    </a>
+                                    <a style="cursor: pointer" (click)="showDeleteForm(e)">
+                                        <i class="icon ion-md-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ng-template #empty>
+                        <div class="text-center">
+                            <img src="assets/img/project.svg" class="img-lg"/>
+                        </div>
+                        <div class="text-center">
+                            Any Project Saved.
+                            <br>
+                            <button class="mt-2 btn btn-primary" type="submit" (click)="showEditForm(null)">
+                                Add New Project
+                            </button>
+                        </div>
+                    </ng-template>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

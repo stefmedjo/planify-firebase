@@ -1,1 +1,84 @@
-/* You can add global styles to this file, and also import other style files */
+@import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
+
+html,body{
+    height: 100%;
+}
+.gantt-chart{
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+.navbar{
+    padding : 0rem 1rem !important;
+}
+.img-lg{
+    height: 10em;
+    margin : 4em 0em;
+}
+body{
+    font-family: "poppins"
+}
+.title{
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.navbar{
+    border-bottom: 1px solid #eaeaea;
+    font-size: 12px;    
+}
+.header-bg{
+    background-color: #ffffff;
+    height: calc(100% - 54px);
+}
+.navbar-not-connected{
+    border-bottom: none !important;  
+    font-size: 16px;
+}
+.child-box{
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.parent-box{
+    position: relative;
+    height: calc(100% - 54px);
+}
+.fs-xlg{
+    font-size: 2em;
+}
+a.active{
+    color : #333;
+}
+.actions{
+    color : #e9ecef;
+    font-size: 20px;
+}
+.actions a{
+    color : #aaa;
+}
+.actions a:first-child{
+    margin-right: 5px;
+}
+.actions a:hover{
+    color : #007bff !important;
+}
+.modal-header{
+    border-bottom: none;
+}
+.modal-title{
+    font-weight: 100;
+}
+.side i{
+    font-size: 14px;
+    color : #666;
+}
+.img-center-block{
+    margin: auto;
+    width: 15%;
+}
+.fs-lg{
+    font-size: 18px;
+}

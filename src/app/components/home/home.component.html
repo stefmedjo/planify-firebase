@@ -1,0 +1,26 @@
+<app-loader *ngIf="isLoading;else loaded"></app-loader>
+<ng-template #loaded>
+    <app-project-list *ngIf="cuser != null;else notAuth"></app-project-list>
+    <ng-template #notAuth>
+        <div class="header-bg parent-box">
+            <div class="container child-box">
+                <div class="row">
+                    <div class="col-md-12 text-center"> 
+
+                        <ngx-typed-js class="fs-xlg" [loop]="true" [strings]="['Civil Engineering.','Creativity.','Productive People.','Planning.', 'Your Projects','You.']" [shuffle]="false" [typeSpeed]="40">
+                            Gantt Chart Builder for <span class="typing text-primary"></span>
+                        </ngx-typed-js>
+                        <div>
+                            When project planning in spreadsheets is chaos, and when fancy project management software is overkill — try Planify.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    
+</ng-template>
+
+<!--
+<gantt></gantt>
+-->
